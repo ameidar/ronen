@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: 'MEIDAR ARCHITECTS | Luxury Architecture & Interior Design',
   description: 'Luxury architectural studio led by Ronen Meidar - Creating timeless and elegant spaces in Israel.',
   icons: {
-    icon: '/logo.png',
+    icon: '/favicon.ico',
   },
   openGraph: {
     title: 'MEIDAR ARCHITECTS | Luxury Architecture & Interior Design',
