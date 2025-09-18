@@ -90,7 +90,7 @@ export default function Footer() {
                 height={25}
               />
               <span className="font-medium text-sm bg-gradient-to-r from-[#DCDDE1] via-[#DCDDE1]/90 to-[#DCDDE1]/80 bg-clip-text text-transparent">
-                Idan Shlomo
+                Hai.Tech
               </span>
             </span>
           </a>
