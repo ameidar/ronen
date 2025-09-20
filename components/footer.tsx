@@ -1,8 +1,29 @@
+"use client"
+
 import Image from 'next/image'
 import { Instagram, Facebook, Mail, Phone, MapPin } from 'lucide-react'
 import ContactFormFooter from './ContactFormFooter'
+import { useLocale } from '@/lib/use-locale'
 
 export default function Footer() {
+  const locale = useLocale()
+  const t = locale === 'he' ? {
+    phone: 'טלפון',
+    email: 'אימייל',
+    offices: 'מיקומי משרדים',
+    south: 'סניף דרום: ז׳בוטינסקי 10, גדרה',
+    north: 'סניף צפון: קיבוץ גינוסר',
+    send: 'שלחו הודעה',
+    madeBy: 'Made by',
+  } : {
+    phone: 'Phone',
+    email: 'Email',
+    offices: 'Office Locations',
+    south: 'South branch: Jabutinski 10, Gedera',
+    north: 'North branch: Kibuts Ginosar',
+    send: 'Send us a Message',
+    madeBy: 'Made by',
+  }
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-16">
@@ -13,7 +34,7 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <Phone className="w-5 h-5 mt-1" />
                 <div>
-                  <p className="font-medium">Phone</p>
+                  <p className="font-medium">{t.phone}</p>
                   <a href="tel:+972524093549" className="hover:underline">
                     052-409-3549
                   </a>
@@ -23,7 +44,7 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <Mail className="w-5 h-5 mt-1" />
                 <div>
-                  <p className="font-medium">Email</p>
+                  <p className="font-medium">{t.email}</p>
                   <a href="mailto:ronen.meidar@gmail.com" className="hover:underline">
                     ronen.meidar@gmail.com
                   </a>
@@ -33,10 +54,10 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 mt-1" />
                 <div>
-                  <p className="font-medium">Office Locations</p>
+                  <p className="font-medium">{t.offices}</p>
                   <div>
-                    <p>South branch: Jabutinski 10, Gedera</p>
-                    <p>North branch: Kibuts Ginosar</p>
+                    <p>{t.south}</p>
+                    <p>{t.north}</p>
                   </div>
                 </div>
               </div>
@@ -65,7 +86,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h2 className="text-2xl font-light mb-8">Send us a Message</h2>
+            <h2 className="text-2xl font-light mb-8">{t.send}</h2>
             <ContactFormFooter />
           </div>
         </div>
@@ -81,7 +102,7 @@ export default function Footer() {
             rel="noopener noreferrer"
           >
             <span className="relative z-10 flex items-center">
-              <span className="text-xs font-medium text-[#ACAEB1] mr-2">Made by</span>
+              <span className="text-xs font-medium text-[#ACAEB1] mr-2">{t.madeBy}</span>
               <Image
                 className="mr-2 group-hover/button:rotate-12 transition-transform duration-300"
                 src="/is-logo.svg"

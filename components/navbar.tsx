@@ -21,15 +21,19 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const navItems = [
-    { href: '/', label: 'HOME' },
-    { href: '/projects', label: 'PROJECTS' },
-    { href: '/contact', label: 'CONTACT' },
-  ]
-
   const currentLocale = pathname?.split('/').filter(Boolean)[0] === 'he' ? 'he' : 'en'
   const oppositeLocale = currentLocale === 'he' ? 'en' : 'he'
   const switchLocalePath = `/${oppositeLocale}` + (pathname ? pathname.replace(/^\/(en|he)/, '') : '')
+
+  const labels = currentLocale === 'he'
+    ? { home: 'בית', projects: 'פרויקטים', contact: 'צור קשר' }
+    : { home: 'HOME', projects: 'PROJECTS', contact: 'CONTACT' }
+
+  const navItems = [
+    { href: '/', label: labels.home },
+    { href: '/projects', label: labels.projects },
+    { href: '/contact', label: labels.contact },
+  ]
 
   const menuVariants = {
     closed: {

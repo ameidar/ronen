@@ -1,15 +1,26 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { projects } from "@/lib/projects"
+import { useLocale } from "@/lib/use-locale"
 
 export default function FeaturedProjects() {
+  const locale = useLocale()
+  const text = locale === 'he' ? {
+    title: 'פרויקטים נבחרים',
+    viewAll: 'צפו בכל הפרויקטים',
+  } : {
+    title: 'Featured Projects',
+    viewAll: 'View All Projects',
+  }
   // Select the first 3 projects as featured
   const featuredProjects = projects.slice(0, 3)
 
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-light mb-12 text-center">Featured Projects</h2>
+        <h2 className="text-3xl md:text-4xl font-light mb-12 text-center">{text.title}</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {featuredProjects.map((project) => (
             <Link key={project.id} href={`/projects/${project.id}`} className="group">
@@ -31,7 +42,7 @@ export default function FeaturedProjects() {
             href="/projects"
             className="inline-block px-6 py-3 border border-primary text-primary hover:bg-primary hover:text-white transition-colors duration-300"
           >
-            View All Projects
+            {text.viewAll}
           </Link>
         </div>
       </div>
