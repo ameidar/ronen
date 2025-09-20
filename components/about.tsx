@@ -30,7 +30,7 @@ export default function About() {
     <section className="py-20 md:py-32 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
+          <div className={`space-y-6 ${locale === 'he' ? 'text-right md:order-2' : ''}`}> 
             <h2 className="text-3xl md:text-4xl font-light">{t[locale].title}</h2>
             <div className="space-y-4 text-muted-foreground">
               <p>{t[locale].p1}</p>
@@ -38,7 +38,7 @@ export default function About() {
               <p>{t[locale].p3}</p>
             </div>
           </div>
-          <div className="relative w-full max-w-[300px] mx-auto">
+          <div className={`relative w-full max-w-[300px] mx-auto ${locale === 'he' ? 'md:order-1' : ''}`}>
             <Image
               src="/ronen.png"
               alt="MEIDAR ARCHITECTS Studio"

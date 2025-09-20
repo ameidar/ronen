@@ -45,8 +45,8 @@ export default function PhilosophySection() {
   return (
     <section className="py-24 md:py-32 bg-neutral-50">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-          <div className="space-y-8">
+        <div className={`grid lg:grid-cols-2 gap-12 lg:gap-24 items-center ${locale === 'he' ? 'direction-rtl' : ''}`}>
+          <div className={`space-y-8 ${locale === 'he' ? 'lg:order-2 text-right' : ''}`}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -76,7 +76,7 @@ export default function PhilosophySection() {
             </div>
           </div>
 
-          <div className="relative">
+          <div className={`relative ${locale === 'he' ? 'lg:order-1' : ''}`}>
             <div className="relative w-full max-w-md mx-auto aspect-[4/5] rounded-sm overflow-hidden">
               <Image
                 src="/projects/zw-house/image7.jpg"
