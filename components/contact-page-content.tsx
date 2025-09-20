@@ -73,14 +73,19 @@ export default function ContactPageContent() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="container mx-auto px-4 py-12 md:py-24"
+        dir={locale === 'he' ? 'rtl' : 'ltr'}
       >
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
+        <div
+          className={`grid md:grid-cols-2 gap-12 lg:gap-24 ${
+            locale === 'he' ? 'md:[&>*:first-child]:order-2 md:[&>*:last-child]:order-1' : ''
+          }`}
+        >
           <div>
-            <h2 className="text-3xl font-playfair mb-6">{t.contactUs}</h2>
-            <ContactForm />
+            <h2 className={`text-3xl font-playfair mb-6 ${locale === 'he' ? 'text-right' : ''}`}>{t.contactUs}</h2>
+            <div className="max-w-3xl"><ContactForm /></div>
           </div>
           <div>
-            <h2 className="text-3xl font-playfair mb-6">{t.ourOffices}</h2>
+            <h2 className={`text-3xl font-playfair mb-6 ${locale === 'he' ? 'text-right' : ''}`}>{t.ourOffices}</h2>
             <div className="space-y-6 mb-8">
               <div className="flex items-start gap-4">
                 <Phone className="w-6 h-6 mt-1 text-primary" />

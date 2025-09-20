@@ -26,9 +26,15 @@ export default function Footer() {
   }
   return (
     <footer className="bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
-          <div>
+      <div className="container mx-auto px-4 py-16" dir={locale === 'he' ? 'rtl' : 'ltr'}>
+        <div
+          className={`grid md:grid-cols-2 gap-12 lg:gap-24 ${
+            locale === 'he'
+              ? 'md:[&>*:first-child]:order-2 md:[&>*:last-child]:order-1'
+              : ''
+          }`}
+        >
+          <div className={locale === 'he' ? 'text-right md:justify-self-end' : ''}>
             <Image src="/logo-black.png" alt="MEIDAR ARCHITECTS Logo" width={150} height={75} className="mb-6 invert" />
             <div className="space-y-6">
               <div className="flex items-start gap-3">
@@ -85,8 +91,8 @@ export default function Footer() {
             </div>
           </div>
 
-          <div>
-            <h2 className="text-2xl font-light mb-8">{t.send}</h2>
+          <div className={locale === 'he' ? 'text-right' : ''}>
+            <h2 className={`text-2xl font-light mb-8 ${locale === 'he' ? 'text-right' : ''}`}>{t.send}</h2>
             <ContactFormFooter />
           </div>
         </div>
