@@ -21,10 +21,18 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const currentLocale = pathname?.split('/').filter(Boolean)[0] === 'he' ? 'he' : 'en'
+  const oppositeLocale = currentLocale === 'he' ? 'en' : 'he'
+  const switchLocalePath = `/${oppositeLocale}` + (pathname ? pathname.replace(/^\/(en|he)/, '') : '')
+
+  const labels = currentLocale === 'he'
+    ? { home: 'בית', projects: 'פרויקטים', contact: 'צור קשר' }
+    : { home: 'HOME', projects: 'PROJECTS', contact: 'CONTACT' }
+
   const navItems = [
-    { href: '/', label: 'HOME' },
-    { href: '/projects', label: 'PROJECTS' },
-    { href: '/contact', label: 'CONTACT' },
+    { href: '/', label: labels.home },
+    { href: '/projects', label: labels.projects },
+    { href: '/contact', label: labels.contact },
   ]
 
   const menuVariants = {
@@ -74,17 +82,23 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden md:flex  items-center space-x-12 pr-4 md:pr-0">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`text-sm font-medium transition-colors ${
-                  pathname === item.href ? 'text-primary' : 'hover:text-primary'
-                } ${isScrolled ? 'text-white' : 'text-white'}`}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const href = `/${currentLocale}${item.href === '/' ? '' : item.href}`
+              return (
+                <Link
+                  key={item.href}
+                  href={href}
+                  className={`text-sm font-medium transition-colors ${
+                    pathname === href ? 'text-primary' : 'hover:text-primary'
+                  } ${isScrolled ? 'text-white' : 'text-white'}`}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
+            <Link href={switchLocalePath} className="text-sm font-medium opacity-80 hover:opacity-100">
+              {currentLocale === 'he' ? 'EN' : 'HE'}
+            </Link>
           </div>
 
           <Button
@@ -112,9 +126,9 @@ export default function Navbar() {
               {navItems.map((item, i) => (
                 <motion.div key={item.href} custom={i} variants={menuItemVariants}>
                   <Link
-                    href={item.href}
+                    href={`/${currentLocale}${item.href === '/' ? '' : item.href}`}
                     className={`text-3xl font-light mb-12 transition-colors ${
-                      pathname === item.href ? 'text-primary' : 'hover:text-primary'
+                      pathname === `/${currentLocale}${item.href === '/' ? '' : item.href}` ? 'text-primary' : 'hover:text-primary'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -122,6 +136,9 @@ export default function Navbar() {
                   </Link>
                 </motion.div>
               ))}
+              <Link href={switchLocalePath} className="text-xl font-light mt-4">
+                {currentLocale === 'he' ? 'EN' : 'HE'}
+              </Link>
             </div>
           </motion.div>
         )}
